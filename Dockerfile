@@ -31,6 +31,7 @@ RUN mkdir -p /var/lib/ckan/storage
 ADD develop.ini /project/development.ini
 ADD start.sh /start.sh
 
-
+# Replace apache config for base url  /busca
+ADD ckan_default.conf /etc/apache2/sites-available/ckan_default.conf
 
 ENTRYPOINT ["/start.sh"]
