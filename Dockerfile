@@ -16,7 +16,7 @@ MAINTAINER Francisco Vaquero <francisco@opi.la>
 RUN \
   virtualenv $CKAN_HOME && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme && \
-  $CKAN_HOME/bin/pip install -e https://github.com/vaquer/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/ckan/ckanext-spatial.git@stable#egg=ckanext-spatial && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-more-facets.git@test-category#egg=ckanext-more-facets && \
