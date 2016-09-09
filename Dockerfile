@@ -24,8 +24,8 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme && \
   git clone https://github.com/opintel/CKAN_Calidad.git $CKAN_HOME/src/ckanext-mxopeness && \
-  mv $CKAN_HOME/src/CKAN_Calidad/ckanext-mxopeness/ckanext-mxopeness/* $CKAN_HOME/src/ckanext-mxopeness && \
-  $CKAN_HOME/bin/python $CKAN_HOME/src/ckanext-mxopeness/setup.py develop
+  #mv $CKAN_HOME/src/CKAN_Calidad/ckanext-mxopeness/ckanext-mxopeness/* $CKAN_HOME/src/ckanext-mxopeness && \
+  $CKAN_HOME/bin/python $CKAN_HOME/src/ckanext-mxopeness/ckanext-mxopeness/setup.py develop
 
 # Create storage volumen folder 
 RUN mkdir -p /var/lib/ckan/storage
