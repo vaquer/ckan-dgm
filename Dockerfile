@@ -7,7 +7,7 @@
 #   docker run --rm -itP mxabierto/ckan
 
 # Base image
-FROM mxabierto/ckan
+FROM mxabierto/ckan:v2.0.5
 MAINTAINER Francisco Vaquero <francisco@opi.la>
 
 # Instalacion de los plugins
