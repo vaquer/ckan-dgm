@@ -6,6 +6,7 @@ sed -i -e "s|ckan.site_url =|ckan.site_url = $CKAN_SITE_URL|" /project/developme
 sed -i -e "s|ckan_default:pass@localhost/ckan_default|$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_POSTGRES_DB|" /project/development.ini
 sed -i -e "s|datastore_default:pass@localhost/datastore_default|$POSTGRES_ENV_USER_DATASTORE:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_DATABASE_DATASTORE|" /project/development.ini
 sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_ADDR:5432:$POSTGRES_ENV_POSTGRES_DB:$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD|" /root/.pgpass
+sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_IP|" /project/development.ini
 
 # Create tables
 if [ "$INIT_DBS" = true ]; then
@@ -14,6 +15,9 @@ if [ "$INIT_DBS" = true ]; then
   $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
 fi
 
+if ["$INIT_HARVEST" = true]; then
+    $CKAN_HOME/bin/paster --plugin=ckanext-harvest harvester initdb -c /project/development.ini
+fi
 # Load a dump file to ckan database
 # Temporalmente deshabilitado para probar el dump
 

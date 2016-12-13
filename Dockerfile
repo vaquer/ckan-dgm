@@ -23,10 +23,19 @@ RUN \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/CKAN_Calidad.git#egg=ckanext-mxopeness&subdirectory=ckanext-mxopeness
+  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/CKAN_Calidad.git#egg=ckanext-mxopeness&subdirectory=ckanext-mxopeness && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-harvest@dkan#egg=ckanext-harvest && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-dkan#egg=ckanext-dkan && \
+  $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt
+
 
 # Create storage volumen folder 
-RUN mkdir -p /var/lib/ckan/storage
+RUN mkdir -p /var/lib/ckan/storage/uploads/group && \
+  find /var/lib/ckan/storage -type d -exec chmod 777 {} \;
+
+RUN mkdir -p /var/lib/ckan/resources/ && \
+  find /var/lib/ckan/resources -type d -exec chmod 777 {} \;
+
 
 # Add my configuration file
 ADD develop.ini /project/development.ini
