@@ -1,21 +1,21 @@
 #!/bin/sh
 
 # Adjust config file
-sed -i -e "s|#solr_url = http://127.0.0.1:8983/solr|solr_url = http://$SOLR_PORT_8983_TCP_ADDR:$SOLR_PORT_8983_TCP_PORT/solr|" /project/development.ini
+sed -i -e "s|#solr_url = http://127.0.0.1:8983/solr|solr_url = http://$SOLR_PORT_8080_TCP_ADDR:$SOLR_PORT_8080_TCP_PORT/solr|" /project/development.ini
 sed -i -e "s|ckan.site_url =|ckan.site_url = $CKAN_SITE_URL|" /project/development.ini
 sed -i -e "s|ckan_default:pass@localhost/ckan_default|$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_POSTGRES_DB|" /project/development.ini
 sed -i -e "s|datastore_default:pass@localhost/datastore_default|$POSTGRES_ENV_USER_DATASTORE:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_DATABASE_DATASTORE|" /project/development.ini
 sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_ADDR:5432:$POSTGRES_ENV_POSTGRES_DB:$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD|" /root/.pgpass
-sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_IP|" /project/development.ini
+sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_PORT_6379_TCP_ADDR|" /project/development.ini
 
 # Create tables
 if [ "$INIT_DBS" = true ]; then
   $CKAN_HOME/bin/paster --plugin=ckan db init -c /project/development.ini
-  $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
+  #$CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
   $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
 fi
 
-if ["$INIT_HARVEST" = true]; then
+if [ "$INIT_HARVEST" = true ]; then
     $CKAN_HOME/bin/paster --plugin=ckanext-harvest harvester initdb -c /project/development.ini
 fi
 # Load a dump file to ckan database
@@ -28,10 +28,21 @@ fi
 #fi
 
 # Create test data for development purpose
-if [ "$TEST_DATA" = true]; then
-  $CKAN_HOME/bin/paster --plugin=ckan create-test-data -c /project/development.ini echo "Llenando datos de prueba"
+if [ "$TEST_DATA" = true ]; then
+    $CKAN_HOME/bin/paster --plugin=ckan create-test-data -c /project/development.ini echo "Llenando datos de prueba"
 fi
+
+sudo touch /var/run/supervisor.sock
+sudo chmod 777 /var/run/supervisor.sock
+sudo service supervisor restart
+
+sudo supervisorctl reread
+#sudo supervisorctl add ckan_gather_consumer
+#sudo supervisorctl add ckan_fetch_consumer
+#sudo supervisorctl add ckan_harvest
+#sudo supervisorctl start ckan_gather_consumer
+#sudo supervisorctl start ckan_fetch_consumer
+#sudo supervisorctl start ckan_harvest
 
 # Serve site
 exec apachectl -DFOREGROUND
-
