@@ -13,6 +13,8 @@ MAINTAINER Francisco Vaquero <francisco@opi.la>
 # Instalacion de los plugins
 # Agregar tantos como sea necesario siguiendo la estructura:
 # $CKAN_HOME/bin/pip install -e git+https:repo
+RUN apt-get update && apt-get install -y supervisor cron
+
 RUN \
   virtualenv $CKAN_HOME && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-spatial.git#egg=ckanext-spatial && \
@@ -30,7 +32,6 @@ RUN \
   $CKAN_HOME/bin/pip install GeoAlchemy2 && \
   $CKAN_HOME/bin/pip freeze
 
-
 # Create storage volumen folder 
 RUN mkdir -p /var/lib/ckan/storage/uploads/group && \
   find /var/lib/ckan/storage -type d -exec chmod 777 {} \;
@@ -38,7 +39,12 @@ RUN mkdir -p /var/lib/ckan/storage/uploads/group && \
 RUN mkdir -p /var/lib/ckan/resources/ && \
   find /var/lib/ckan/resources -type d -exec chmod 777 {} \;
 
+RUN mkdir -p /var/log/ckan/std/
+
 # Add my configuration file
+ADD ckan_harvesting.conf /etc/supervisor/conf.d/ckan_harvesting.conf
+ADD crontab /etc/cron.d/harvest-cron
+RUN chmod 0644 /etc/cron.d/harvest-cron
 ADD develop.ini /project/development.ini
 ADD start.sh /start.sh
 ADD pgfile.pgpass /root/.pgpass
