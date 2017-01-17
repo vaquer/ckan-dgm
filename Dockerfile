@@ -20,8 +20,9 @@ RUN mkdir $DATAPUSHER_HOME && virtualenv $DATAPUSHER_HOME && \
 
 # Copy datapusher config files
 ADD datapusher.conf /etc/apache2/sites-available/datapusher.conf
-RUN cp /project/datapusher/deployment/datapusher.wsgi /etc/ckan/datapusher.wsgi && \
-    cp /project/datapusher/deployment/datapusher_settings.py /etc/ckan/datapusher_settings.py
+ADD datapusher_settings.py /etc/ckan/datapusher_settings.py
+
+RUN cp /project/datapusher/deployment/datapusher.wsgi /etc/ckan/datapusher.wsgi
 
 # Apche's datapusher config 
 RUN sudo sh -c 'echo "NameVirtualHost *:8800" >> /etc/apache2/ports.conf'
