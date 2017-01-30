@@ -8,6 +8,7 @@
 
 # Base image
 FROM mxabierto/ckan:ed4df9e73f1d28cfa90712dabb0f8b604180ef93
+#FROM mxabierto/ckan:v2.0.5
 MAINTAINER Francisco Vaquero <francisco@opi.la>
 
 ENV DATAPUSHER_HOME /usr/lib/ckan/datapusher
@@ -64,6 +65,7 @@ RUN mkdir -p /var/lib/ckan/resources/ && \
   find /var/lib/ckan/resources -type d -exec chmod 777 {} \;
 
 RUN mkdir -p /var/log/ckan/std/
+
 
 # Add my configuration file
 ADD ckan_harvesting.conf /etc/supervisor/conf.d/ckan_harvesting.conf
