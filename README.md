@@ -19,5 +19,5 @@ docker run \
   --name ckan \
   --link ckan-solr:solr \
   --link postgres:postgres \
-  -d -P mxabierto/ckan
+  -d -P mxabierto/ckan-dgm
 ```
