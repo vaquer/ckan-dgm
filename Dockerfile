@@ -7,7 +7,7 @@
 #   docker run --rm -itP mxabierto/ckan
 
 # Base image
-FROM mxabierto/ckan
+FROM mxabierto/ckan:v2.0.5
 MAINTAINER Francisco Vaquero <francisco@opi.la>
 
 # Instalacion de los plugins
@@ -24,7 +24,7 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme
 
-# Create storage volumen folder 
+# Create storage volumen folder
 RUN mkdir -p /var/lib/ckan/storage
 
 # Add my configuration file
