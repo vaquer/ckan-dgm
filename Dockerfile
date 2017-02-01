@@ -15,6 +15,7 @@ ENV DATAPUSHER_HOME /usr/lib/ckan/datapusher
 # Install datapusher and dependencies
 RUN mkdir $DATAPUSHER_HOME && virtualenv $DATAPUSHER_HOME && \
     git clone --branch stable https://github.com/ckan/datapusher /project/datapusher && \
+    $DATAPUSHER_HOME/bin/pip install packaging==16.8 appdirs==1.4.0 && \
     $DATAPUSHER_HOME/bin/pip install -r /project/datapusher/requirements.txt && \
     $DATAPUSHER_HOME/bin/pip install -e /project/datapusher
 
