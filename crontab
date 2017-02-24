@@ -1,0 +1,7 @@
+# Harvest crontab
+SHELL=/bin/sh
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+# m h dom mon dow user	command
+*/1 * * * * root /usr/lib/ckan/bin/paster --plugin=ckanext-harvest harvester run --config=/project/development.ini > /var/log/ckan/std/harvest.log
+# Cron
