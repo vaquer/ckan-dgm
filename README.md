@@ -75,3 +75,7 @@ spec:
   - DATASTORE_ENV_USER_DATASTORE_PWD
   - DATASTORE_PORT_5432_TCP_ADDR
   - DATAPUSHER_URL_WITH_PORT
+
+- Cambio de nombre en variable de ambiente para SOLR (SOLR_PORT_8080_TCP_PORT, SOLR_PORT_8080_TCP_PORT)
+
+- Dependencia con instancias REDIS para manejo de background-jobs (REDIS_PORT_6379_TCP_ADDR)
