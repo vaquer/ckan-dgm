@@ -26,7 +26,7 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-more-facets.git@test-category#egg=ckanext-more-facets && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/ckan/ckanext-googleanalytics.git#egg=ckanext-googleanalytics && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme@quickwins#egg=ckanext-mxtheme && \
   #$CKAN_HOME/bin/pip install -e git+https://github.com/opintel/CKAN_Calidad.git#egg=ckanext-mxopeness&subdirectory=ckanext-mxopeness && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-dkan#egg=ckanext-dkan
 
