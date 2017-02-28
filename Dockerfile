@@ -38,6 +38,7 @@ EXPOSE 8800
 # $CKAN_HOME/bin/pip install -e git+https:repo
 RUN apt-get update && apt-get install -y supervisor cron
 
+
 RUN \
   virtualenv $CKAN_HOME && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-spatial.git#egg=ckanext-spatial && \
