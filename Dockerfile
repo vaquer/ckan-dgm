@@ -13,6 +13,7 @@ MAINTAINER Francisco Vaquero <francisco@opi.la>
 
 ENV DATAPUSHER_HOME /usr/lib/ckan/datapusher
 
+
 # Install datapusher and dependencies
 RUN mkdir $DATAPUSHER_HOME && virtualenv $DATAPUSHER_HOME && \
     git clone --branch stable https://github.com/ckan/datapusher /project/datapusher && \
