@@ -26,7 +26,7 @@ spec:
            - name: INIT_DBS
              value: "false"
            - name: CKAN_SITE_URL
-             value: "http://datos.gob.mx"
+             value: "http://datos.gob.mx/busca"
            - name: SOLR_PORT_8080_TCP_ADDR
              value: "{xxxxxxx}"
            - name: SOLR_PORT_8080_TCP_PORT
@@ -53,6 +53,8 @@ spec:
              value: "{datastore-dbname}"
            - name: REDIS_PORT_6379_TCP_ADDR
              value: "{redis_tcp_ip}"
+           - name: DATAPUSHER_URL_WITH_PORT
+             value: http://{ip-ckan}:8800/
          volumeMounts:
            - mountPath: "/var/lib/ckan"
              name: ckan-data
@@ -72,3 +74,4 @@ spec:
   - DATASTORE_ENV_USER_DATASTORE_READ
   - DATASTORE_ENV_USER_DATASTORE_PWD
   - DATASTORE_PORT_5432_TCP_ADDR
+  - DATAPUSHER_URL_WITH_PORT
