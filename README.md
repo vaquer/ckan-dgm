@@ -66,9 +66,7 @@ spec:
            path: "xxxxxxxxxxxxxxxxx"
 ```
 
-## Release Notes
-
-- Cambio de nombre en variables de ambiente para DATASTORE:
+Cambio de nombre en variables de ambiente para DATASTORE:
   - DATASTORE_ENV_DATABASE_DATASTORE
   - DATASTORE_ENV_USER_DATASTORE
   - DATASTORE_ENV_USER_DATASTORE_READ
