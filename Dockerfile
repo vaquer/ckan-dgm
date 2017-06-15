@@ -7,8 +7,8 @@
 #   docker run --rm -itP mxabierto/ckan
 
 # Base image
-FROM mxabierto/ckan:ed4df9e73f1d28cfa90712dabb0f8b604180ef93
-#FROM mxabierto/ckan:v2.0.5
+#FROM mxabierto/ckan:ed4df9e73f1d28cfa90712dabb0f8b604180ef93
+FROM mxabierto/ckan:2.5.3
 MAINTAINER Francisco Vaquero <francisco@opi.la>
 
 ENV DATAPUSHER_HOME /usr/lib/ckan/datapusher
@@ -39,16 +39,15 @@ EXPOSE 8800
 # $CKAN_HOME/bin/pip install -e git+https:repo
 RUN apt-get update && apt-get install -y supervisor cron
 
-
 RUN \
   virtualenv $CKAN_HOME && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-spatial.git#egg=ckanext-spatial && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/ckan/ckanext-googleanalytics.git#egg=ckanext-googleanalytics && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-dcat.git#egg=ckanext-dcat && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-dcat@develop-opi#egg=ckanext-dcat && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-more-facets.git@test-category#egg=ckanext-more-facets && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme@development#egg=ckanext-mxtheme && \
   #$CKAN_HOME/bin/pip install -e git+https://github.com/opintel/CKAN_Calidad.git#egg=ckanext-mxopeness&subdirectory=ckanext-mxopeness && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-sitemap.git#egg=ckanext-sitemap && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-harvest@dkan#egg=ckanext-harvest && \
