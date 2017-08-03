@@ -38,7 +38,7 @@ EXPOSE 8800
 # Agregar tantos como sea necesario siguiendo la estructura:
 # $CKAN_HOME/bin/pip install -e git+https:repo
 RUN apt-get update && apt-get install -y supervisor cron
-
+ADD ckan_default.conf /etc/apache2/sites-available/ckan_default.conf
 
 RUN \
   virtualenv $CKAN_HOME && \
