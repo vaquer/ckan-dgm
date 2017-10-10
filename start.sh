@@ -14,6 +14,7 @@ sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_AD
 # Redis Configs
 sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_PORT_6379_TCP_ADDR|" /project/development.ini
 sed -i -e "s|ckan.harvest.mq.port = 6379|ckan.harvest.mq.port = $REDIS_PORT|" /project/development.ini
+sed -i -e "s|mxtheme.adela_api_endopint = |mxtheme.adela_api_endopint = $ADELA_ENDPOINT|" /project/development.ini
 
 $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini
 
