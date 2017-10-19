@@ -6,14 +6,12 @@ sed -i -e "s|ckan.site_url =|ckan.site_url = $CKAN_SITE_URL|" /project/developme
 sed -i -e "s|ckan_default:pass@localhost/ckan_default|$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_POSTGRES_DB|" /project/development.ini
 
 # Datapusher Configs
-sed -i -e "s|datastore_default:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
-sed -i -e "s|datastore_default_read:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE_READ:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
+#sed -i -e "s|datastore_default:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
+#sed -i -e "s|datastore_default_read:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE_READ:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
 sed -i -e "s|ckan.datapusher.url = http://0.0.0.0:8800/|ckan.datapusher.url = $DATAPUSHER_URL_WITH_PORT|" /project/development.ini
 
 sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_ADDR:5432:$POSTGRES_ENV_POSTGRES_DB:$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD|" /root/.pgpass
 # Redis Configs
-sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_PORT_6379_TCP_ADDR|" /project/development.ini
-sed -i -e "s|ckan.harvest.mq.port = 6379|ckan.harvest.mq.port = $REDIS_PORT|" /project/development.ini
 sed -i -e "s|mxtheme.adela_api_endopint = |mxtheme.adela_api_endopint = $ADELA_ENDPOINT|" /project/development.ini
 
 $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini
@@ -25,9 +23,9 @@ if [ "$INIT_DBS" = true ]; then
   $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
 fi
 
-if [ "$INIT_HARVEST" = true ]; then
-    $CKAN_HOME/bin/paster --plugin=ckanext-harvest harvester initdb -c /project/development.ini
-fi
+# if [ "$INIT_HARVEST" = true ]; then
+#     $CKAN_HOME/bin/paster --plugin=ckanext-harvest harvester initdb -c /project/development.ini
+# fi
 # Load a dump file to ckan database
 # Temporalmente deshabilitado para probar el dump
 
