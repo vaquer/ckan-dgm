@@ -6,8 +6,8 @@ sed -i -e "s|ckan.site_url =|ckan.site_url = $CKAN_SITE_URL|" /project/developme
 sed -i -e "s|ckan_default:pass@localhost/ckan_default|$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_POSTGRES_DB|" /project/development.ini
 
 # Datapusher Configs
-#sed -i -e "s|datastore_default:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
-#sed -i -e "s|datastore_default_read:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE_READ:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
+sed -i -e "s|datastore_default:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
+sed -i -e "s|datastore_default_read:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE_READ:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
 sed -i -e "s|ckan.datapusher.url = http://0.0.0.0:8800/|ckan.datapusher.url = $DATAPUSHER_URL_WITH_PORT|" /project/development.ini
 
 sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_ADDR:5432:$POSTGRES_ENV_POSTGRES_DB:$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD|" /root/.pgpass
