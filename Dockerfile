@@ -49,7 +49,7 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-more-facets.git@test-category#egg=ckanext-more-facets && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme@development#egg=ckanext-mxtheme && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-mxtheme/dev-requirements.txt && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-sitemap.git#egg=ckanext-sitemap && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-harvest@dkan#egg=ckanext-harvest && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt && \
