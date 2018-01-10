@@ -43,7 +43,7 @@ RUN \
   virtualenv $CKAN_HOME && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-spatial.git#egg=ckanext-spatial && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/ckan/ckanext-googleanalytics.git#egg=ckanext-googleanalytics && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-googleanalytics.git#egg=ckanext-googleanalytics && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dcat#egg=ckanext-dcat && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-more-facets.git@develop#egg=ckanext-more-facets && \
