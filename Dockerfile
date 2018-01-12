@@ -21,6 +21,9 @@ RUN mkdir $DATAPUSHER_HOME && virtualenv $DATAPUSHER_HOME && \
     $DATAPUSHER_HOME/bin/pip install -r /project/datapusher/requirements.txt && \
     $DATAPUSHER_HOME/bin/pip install -e /project/datapusher
 
+#Install NewRelic
+RUN $CKAN_HOME/bin/pip install newrelic && \
+
 # Copy datapusher config files
 ADD datapusher.conf /etc/apache2/sites-available/datapusher.conf
 ADD datapusher_settings.py /etc/ckan/datapusher_settings.py
@@ -55,7 +58,6 @@ RUN \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dkan#egg=ckanext-dkan && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
-  $CKAN_HOME/bin/pip install newrelic && \
   $CKAN_HOME/bin/pip install GeoAlchemy2 && \
   $CKAN_HOME/bin/pip freeze
 
@@ -71,7 +73,6 @@ RUN mkdir -p /var/lib/ckan/resources/ && \
 RUN mkdir -p /var/log/ckan/std/
 
 ADD ./newrelic.ini /project/newrelic.ini
-
 ENV NEW_RELIC_CONFIG_FILE=/project/newrelic.ini
 
 # Add my configuration file
