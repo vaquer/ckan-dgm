@@ -67,10 +67,6 @@ RUN mkdir -p /var/lib/ckan/resources/ && \
 
 RUN mkdir -p /var/log/ckan/std/
 
-ADD ./newrelic.ini /project/newrelic.ini
-
-ENV NEW_RELIC_CONFIG_FILE=/project/newrelic.ini
-
 # Add my configuration file
 # ADD ckan_harvesting.conf /etc/supervisor/conf.d/ckan_harvesting.conf
 # ADD crontab /etc/cron.d/harvest-cron
