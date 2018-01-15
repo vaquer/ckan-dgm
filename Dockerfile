@@ -22,7 +22,7 @@ RUN mkdir $DATAPUSHER_HOME && virtualenv $DATAPUSHER_HOME && \
     $DATAPUSHER_HOME/bin/pip install -e /project/datapusher
 
 #Install NewRelic
-RUN $CKAN_HOME/bin/pip install newrelic && \
+RUN $CKAN_HOME/bin/pip install newrelic
 
 # Copy datapusher config files
 ADD datapusher.conf /etc/apache2/sites-available/datapusher.conf
