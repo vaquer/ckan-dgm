@@ -21,10 +21,6 @@ RUN mkdir $DATAPUSHER_HOME && virtualenv $DATAPUSHER_HOME && \
     $DATAPUSHER_HOME/bin/pip install -r /project/datapusher/requirements.txt && \
     $DATAPUSHER_HOME/bin/pip install -e /project/datapusher
 
-#Install NewRelic
-RUN apt-get update && apt-get install python-pip
-RUN pip install newrelic
-
 # Copy datapusher config files
 ADD datapusher.conf /etc/apache2/sites-available/datapusher.conf
 ADD datapusher_settings.py /etc/ckan/datapusher_settings.py
@@ -60,6 +56,7 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dkan#egg=ckanext-dkan && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
   $CKAN_HOME/bin/pip install GeoAlchemy2 && \
+  $CKAN_HOME/bin/pip install newrelic && \
   $CKAN_HOME/bin/pip freeze
 
 # Create storage volumen folder

@@ -59,4 +59,4 @@ sudo supervisorctl reread
 #sudo supervisorctl start ckan_harvest
 
 # Serve site
-exec newrelic-admin run-program apachectl -DFOREGROUND
+exec apachectl -DFOREGROUND
