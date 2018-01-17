@@ -44,17 +44,18 @@ RUN \
   virtualenv $CKAN_HOME && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-spatial.git#egg=ckanext-spatial && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-spatial/pip-requirements.txt && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/ckan/ckanext-googleanalytics.git#egg=ckanext-googleanalytics && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-dcat.git#egg=ckanext-dcat && \
+  # $CKAN_HOME/bin/pip install -e git+https://github.com/ckan/ckanext-googleanalytics.git#egg=ckanext-googleanalytics && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dcat#egg=ckanext-dcat && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-more-facets.git@test-category#egg=ckanext-more-facets && \
-  #$CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme.git#egg=ckanext-mxtheme && \
-  #$CKAN_HOME/bin/pip install -e git+https://github.com/opintel/CKAN_Calidad.git#egg=ckanext-mxopeness&subdirectory=ckanext-mxopeness && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-sitemap.git#egg=ckanext-sitemap && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-harvest@dkan#egg=ckanext-harvest && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-more-facets.git@develop#egg=ckanext-more-facets && \
+  # $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-mxtheme@develop#egg=ckanext-mxtheme && \
+  # $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-mxtheme/dev-requirements.txt && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-sitemap.git#egg=ckanext-sitemap && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-harvest@dkan#egg=ckanext-harvest && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-harvest/pip-requirements.txt && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/vaquer/ckanext-dkan#egg=ckanext-dkan && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
+  # $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dkan#egg=ckanext-dkan && \
+  # $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
   $CKAN_HOME/bin/pip install GeoAlchemy2 && \
   $CKAN_HOME/bin/pip freeze
 
