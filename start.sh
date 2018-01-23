@@ -15,13 +15,13 @@ sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_AD
 # sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_PORT_6379_TCP_ADDR|" /project/development.ini
 # sed -i -e "s|ckan.harvest.mq.port = 6379|ckan.harvest.mq.port = $REDIS_PORT|" /project/development.ini
 
-$CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini
+# $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini
 
 # Create tables
 if [ "$INIT_DBS" = true ]; then
   $CKAN_HOME/bin/paster --plugin=ckan db init -c /project/development.ini
-  #$CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
-  $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
+  # $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
+  # $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
 fi
 
 # if [ "$INIT_HARVEST" = true ]; then
@@ -41,11 +41,11 @@ if [ "$TEST_DATA" = true ]; then
   $CKAN_HOME/bin/paster --plugin=ckan create-test-data -c /project/development.ini echo "Llenando datos de prueba"
 fi
 
-sudo touch /var/run/supervisor.sock
-sudo chmod 777 /var/run/supervisor.sock
-sudo service supervisor restart
+# sudo touch /var/run/supervisor.sock
+# sudo chmod 777 /var/run/supervisor.sock
+# sudo service supervisor restart
 
-sudo supervisorctl reread
+# sudo supervisorctl reread
 #sudo supervisorctl add ckan_gather_consumer
 #sudo supervisorctl add ckan_fetch_consumer
 #sudo supervisorctl add ckan_harvest
