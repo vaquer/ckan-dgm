@@ -11,7 +11,14 @@ sed -i -e "s|datastore_default_read:pass@localhost/datastore_default|$DATASTORE_
 sed -i -e "s|ckan.datapusher.url = http://0.0.0.0:8800/|ckan.datapusher.url = $DATAPUSHER_URL_WITH_PORT|" /project/development.ini
 
 sed -i -e "s|hostname:port:database:username:password|$POSTGRES_PORT_5432_TCP_ADDR:5432:$POSTGRES_ENV_POSTGRES_DB:$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD|" /root/.pgpass
-sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $REDIS_PORT_6379_TCP_ADDR|" /project/development.ini
+
+# Rabbit Configs
+sed -i -e "s|ckan.harvest.mq.hostname = hostharvest|ckan.harvest.mq.hostname = $RABBIT_HOSTNAME|" /project/development.ini
+sed -i -e "s|ckan.harvest.mq.port = 5672|ckan.harvest.mq.port = $RABBIT_PORT|" /project/development.ini
+sed -i -e "s|ckan.harvest.mq.user_id = guest|ckan.harvest.mq.user_id = $RABBIT_USER|" /project/development.ini
+sed -i -e "s|ckan.harvest.mq.password = guest|ckan.harvest.mq.password = $RABBIT_PASSWORD|" /project/development.ini
+sed -i -e "s|ckan.harvest.mq.virtual_host = /|ckan.harvest.mq.virtual_host = $RABBIT_VHOST|" /project/development.ini
+
 
 $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini
 
