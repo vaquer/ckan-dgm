@@ -52,7 +52,7 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-sitemap.git#egg=ckanext-sitemap && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dkan#egg=ckanext-dkan && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
+  # $CKAN_HOME/bin/pip install -e git+https://github.com/okfn/ckanext-disqus#egg=ckanext-disqus && \
   $CKAN_HOME/bin/pip install newrelic && \
   $CKAN_HOME/bin/pip install GeoAlchemy2 && \
   $CKAN_HOME/bin/pip freeze
