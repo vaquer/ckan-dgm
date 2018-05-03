@@ -25,10 +25,12 @@ sed -i -e "s|mxtheme.adela_api_endopint =|mxtheme.adela_api_endopint = $ADELA_EN
 # Create tables
 if [ "$INIT_DBS" = true ]; then
   $CKAN_HOME/bin/paster --plugin=ckan db init -c /project/development.ini
-  # $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
   # $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
 fi
 
+if [ "$INIT_DATSTORE" = true ]; then
+  $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
+fi
 # if [ "$INIT_HARVEST" = true ]; then
     # $CKAN_HOME/bin/paster --plugin=ckanext-harvest harvester initdb -c /project/development.ini
 # fi
