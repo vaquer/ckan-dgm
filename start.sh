@@ -28,8 +28,6 @@ if [ "$INIT_DBS" = true ]; then
   # $CKAN_HOME/bin/paster --plugin=ckanext-spatial spatial initdb 4326 -c /project/development.ini
 fi
 
-echo "Hola Datastore"
-
 if [ "$INIT_DATSTORE" = true ]; then
   echo "Corre Datastore"
   $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini | psql -h $POSTGRES_PORT_5432_TCP_ADDR -U $POSTGRES_ENV_POSTGRES_USER -w --set ON_ERROR_STOP=1
