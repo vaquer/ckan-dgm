@@ -47,7 +47,7 @@ RUN \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-dcat#egg=ckanext-dcat && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-dcat/requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-more-facets.git@develop#egg=ckanext-more-facets && \
-  $CKAN_HOME/bin/pip install -e git+https://github.com/opintel/ckanext-mxtheme@develop#egg=ckanext-mxtheme && \
+  $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-mxtheme@develop#egg=ckanext-mxtheme && \
   $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckanext-mxtheme/dev-requirements.txt && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-mxopeness.git#egg=ckanext-mxopeness && \
   $CKAN_HOME/bin/pip install -e git+https://github.com/mxabierto/ckanext-sitemap.git#egg=ckanext-sitemap && \
