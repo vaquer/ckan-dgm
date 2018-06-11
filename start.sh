@@ -4,6 +4,7 @@
 sed -i -e "s|#solr_url = http://127.0.0.1:8983/solr|solr_url = http://$SOLR_PORT_8080_TCP_ADDR:$SOLR_PORT_8080_TCP_PORT/solr|" /project/development.ini
 sed -i -e "s|ckan.site_url =|ckan.site_url = $CKAN_SITE_URL|" /project/development.ini
 sed -i -e "s|ckan_default:pass@localhost/ckan_default|$POSTGRES_ENV_POSTGRES_USER:$POSTGRES_ENV_POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR/$POSTGRES_ENV_POSTGRES_DB|" /project/development.ini
+sed -i -e "s|ckan.root_path = {{LANG}}/|ckan.root_path = /$CKAN_ROOT_PATH/{{LANG}}/|" /project/development.ini
 
 # Datapusher Configs
 sed -i -e "s|datastore_default:pass@localhost/datastore_default|$DATASTORE_ENV_USER_DATASTORE:$DATASTORE_ENV_USER_DATASTORE_PWD@$DATASTORE_PORT_5432_TCP_ADDR/$DATASTORE_ENV_DATABASE_DATASTORE|" /project/development.ini
@@ -19,7 +20,7 @@ sed -i -e "s|ckan.harvest.mq.password = guest|ckan.harvest.mq.password = $RABBIT
 sed -i -e "s|ckan.harvest.mq.virtual_host = /|ckan.harvest.mq.virtual_host = $RABBIT_VHOST|" /project/development.ini
 
 sed -i -e "s|mxtheme.adela_api_endopint =|mxtheme.adela_api_endopint = $ADELA_ENDPOINT|" /project/development.ini
-
+sed -i -e "s|ckan.redis.url = redis://localhost:6379/0|ckan.redis.url = redis://$REDIS_IP:$REDIS_PORT/0|" /project/development.ini
 # $CKAN_HOME/bin/paster --plugin=ckan datastore set-permissions -c /project/development.ini
 
 # Create tables
